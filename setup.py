@@ -37,7 +37,7 @@ def git_version():
         # For stuff in local development, append .9999
         version = subprocess.check_output(
             'git describe --tags --dirty --always'.split()
-        ).replace('-dirty', '.9999').strip().decode()
+        ).decode().replace('-dirty', '.9999').strip()
     except subprocess.CalledProcessError:
         version = '0.0.0'
 
@@ -53,12 +53,16 @@ if __name__ == '__main__':
         packages=['cinderblock'],
         entry_points={
             'console_scripts': [
-                'cinderblock = cinderblock.cinderblock:main',
-                'commitstatus = cinderblock.commitstatus:main',
+                'cinderblock = cinderblock.cli:entrypoint',
             ]
         },
         install_requires=[
             'circleclient',
-            'requests'
-        ]
+            'requests',
+            'zope.interface',
+        ],
+        tests_require=[
+            'tox',
+        ],
+        cmdclass={'test': Tox},
     )

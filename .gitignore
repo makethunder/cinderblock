@@ -1,3 +1,6 @@
 *.egg-info
 .tox/
 build/
+*.pyc
+/.cache
+/.coverage
