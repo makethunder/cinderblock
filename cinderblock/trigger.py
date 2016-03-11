@@ -19,6 +19,7 @@ class Trigger(object):
         build_args = {
             'CINDERBLOCK_SOURCE_BUILD': source_build,
             'CINDERBLOCK_SOURCE_COMMIT': source_commit,
+            'CINDERBLOCK_CIRCLE_API_TOKEN': self.circleci_client.api_token
         }
         self.circleci_client.build.trigger(target_owner, target_repo, target_branch, **build_args)
 

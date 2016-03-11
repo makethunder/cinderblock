@@ -5,9 +5,9 @@ import pytest
 
 
 class FakeCircleCIClient(object):
-    def __init__(self, api_key):
+    def __init__(self, api_token):
         self._builds_triggered = []
-        self._api_key = api_key
+        self.api_token = api_token
 
         class FakeBuild(object):
             @staticmethod
@@ -17,10 +17,12 @@ class FakeCircleCIClient(object):
 
         self.build = FakeBuild()
 
+fake_api_key = 'api_key'
+
 
 @pytest.fixture
 def trigger():
-    return Trigger('api_key', CircleClient=FakeCircleCIClient)
+    return Trigger(fake_api_key, CircleClient=FakeCircleCIClient)
 
 
 @pytest.fixture
@@ -29,7 +31,7 @@ def circleci_client(api):
 
 
 def test_api_key(trigger):
-    assert trigger.circleci_client._api_key == 'api_key'
+    assert trigger.circleci_client.api_token == fake_api_key
 
 
 def test_interface(trigger):
@@ -57,6 +59,7 @@ def test_trigger_circleci_build(trigger):
     assert build_params == {
         'CINDERBLOCK_SOURCE_BUILD': 'source/build/42',
         'CINDERBLOCK_SOURCE_COMMIT': 'source/commit/12345678deadbeef',
+        'CINDERBLOCK_CIRCLE_API_TOKEN': fake_api_key
     }
 
 
