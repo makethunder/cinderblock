@@ -190,3 +190,10 @@ def test_update_details_url(commit_status, circleci_env):
 def test_update_context(commit_status):
     '''The context is always ci/cinderblock.'''
     assert commit_status['context'] == 'ci/cinderblock'
+
+
+def test_update_noenvironment(cli, monkeypatch, circleci_env):
+    monkeypatch.setenv('CINDERBLOCK_GITHUB_API_TOKEN', 'api_token')
+    monkeypatch.delenv('CINDERBLOCK_SOURCE_COMMIT', raising=False)
+    cli.main('update', 'success')
+    assert len(cli.update._github_statuses) == 0

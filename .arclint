@@ -1,0 +1,21 @@
+{
+  "linters": {
+    "chmod": {
+      "type": "chmod"
+    },
+    "filename": {
+      "type": "filename"
+    },
+    "flake8": {
+      "type": "flake8",
+      "include": "(\\.py$)"
+    },
+    "text": {
+      "type": "text",
+      "include": "(\\.(py|md)$)",
+      "severity": {
+        "5": "warning"
+      }
+    }
+  }
+}

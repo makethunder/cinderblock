@@ -54,7 +54,12 @@ class CLI(object):
 
     def _update(self, args):
         self.update = self.Update()
-        commit = os.environ['CINDERBLOCK_SOURCE_COMMIT']
+        try:
+            commit = os.environ['CINDERBLOCK_SOURCE_COMMIT']
+        except KeyError:
+            # I guess there was no source commit triggering us. Do nothing,
+            # successfully.
+            return
         github_token = os.environ['CINDERBLOCK_GITHUB_API_TOKEN']
         # TODO: handle missing environment variable
         github_user, repo_name, commit_sha = commit.split('/')
