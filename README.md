@@ -30,11 +30,8 @@ they have passed. Now you want integration tests to run.
 
       cinderblock trigger paperg/integration/master
 
-A CircleCI API token which has privileges to trigger a build on the projects
-involved must be set in `$CINDERBLOCK_CIRCLE_API_TOKEN`.  This token gets passed
-as an environment variable between the projects.  This can be used for the 
-receiving project to use CircleCI API to grab artifacts from the triggering 
-projects.
+A CircleCI API token which has privileges to trigger a build on the integration
+project must be set in `$CINDERBLOCK_CIRCLE_API_TOKEN`.
 
 A build of the master branch of the paperg/integration project will be started.
 In that build, cinderblock will set `$CINDERBLOCK_SOURCE_COMMIT` and

@@ -59,7 +59,6 @@ def test_trigger_circleci_build(trigger):
     assert build_params == {
         'CINDERBLOCK_SOURCE_BUILD': 'source/build/42',
         'CINDERBLOCK_SOURCE_COMMIT': 'source/commit/12345678deadbeef',
-        'CINDERBLOCK_CIRCLE_API_TOKEN': fake_api_key
     }
 
 
