@@ -34,9 +34,12 @@ A CircleCI API token which has privileges to trigger a build on the integration
 project must be set in `$CINDERBLOCK_CIRCLE_API_TOKEN`.
 
 A build of the master branch of the paperg/integration project will be started.
-In that build, cinderblock will set `$CINDERBLOCK_SOURCE_COMMIT` and
-`$CINDERBLOCK_SOURCE_BUILD` environment variables so the integration tests can
-know where the trigger came from.
+In that build, cinderblock will set these environment variables so the
+integration tests can know where the trigger came from:
+
+  - `CINDERBLOCK_SOURCE_COMMIT`
+  - `CINDERBLOCK_SOURCE_BUILD`
+  - `CINDERBLOCK_SOURCE_URL`
 
 ### Updating Commit Status from the Integration Tests
 

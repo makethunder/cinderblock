@@ -13,10 +13,12 @@ class Trigger(object):
                                target_owner,
                                target_repo,
                                target_branch,
+                               source_url,
                                source_build,
                                source_commit):
 
         build_args = {
+            'CINDERBLOCK_SOURCE_URL': source_url,
             'CINDERBLOCK_SOURCE_BUILD': source_build,
             'CINDERBLOCK_SOURCE_COMMIT': source_commit,
         }

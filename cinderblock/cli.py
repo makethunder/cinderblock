@@ -49,6 +49,7 @@ class CLI(object):
             target_owner=target_owner,
             target_repo=target_repo,
             target_branch=target_branch,
+            source_url=os.environ['CIRCLE_BUILD_URL'],
             source_build=source_build,
             source_commit=source_commit)
 

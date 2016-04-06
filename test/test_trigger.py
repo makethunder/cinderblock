@@ -43,6 +43,7 @@ def test_trigger_circleci_build(trigger):
         target_owner='target_owner',
         target_repo='target_repo',
         target_branch='target_branch',
+        source_url='http://example.com/',
         source_build='source/build/42',
         source_commit='source/commit/12345678deadbeef')
 
@@ -57,6 +58,7 @@ def test_trigger_circleci_build(trigger):
     assert branch == 'target_branch'
 
     assert build_params == {
+        'CINDERBLOCK_SOURCE_URL': 'http://example.com/',
         'CINDERBLOCK_SOURCE_BUILD': 'source/build/42',
         'CINDERBLOCK_SOURCE_COMMIT': 'source/commit/12345678deadbeef',
     }
@@ -68,6 +70,7 @@ def test_trigger_circleci_build_output_url(trigger, capsys):
         target_owner='target_owner',
         target_repo='target_repo',
         target_branch='target_branch',
+        source_url=None,
         source_build=None,
         source_commit=None)
 

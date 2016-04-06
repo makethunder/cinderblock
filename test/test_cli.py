@@ -17,6 +17,7 @@ class FakeTrigger(object):
                                target_owner,
                                target_repo,
                                target_branch,
+                               source_url,
                                source_build,
                                source_commit):
         self._builds_triggered.append(locals().copy())
@@ -127,6 +128,11 @@ def test_trigger_source_build(triggered_build, circleci_env):
         circleci_env['CIRCLE_PROJECT_REPONAME'],
         circleci_env['CIRCLE_BUILD_NUM'],
     )
+
+
+def test_trigger_source_url(triggered_build, circleci_env):
+    '''The source URL comes from CIRCLE_BUILD_URL.'''
+    assert triggered_build['source_url'] == circleci_env['CIRCLE_BUILD_URL']
 
 
 @pytest.fixture

@@ -5,6 +5,7 @@ class ITrigger(Interface):
     def trigger_circleci_build(target_owner,
                                target_repo,
                                target_branch,
+                               source_url,
                                source_build,
                                source_commit):
         '''Trigger another CircleCI build.
