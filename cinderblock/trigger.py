@@ -22,7 +22,8 @@ class Trigger(object):
             'CINDERBLOCK_SOURCE_BUILD': source_build,
             'CINDERBLOCK_SOURCE_COMMIT': source_commit,
         }
-        self.circleci_client.build.trigger(target_owner, target_repo, target_branch, **build_args)
-
-        print('Build triggered at https://www.circleci.com/gh/%s/%s/tree/%s' % (
-            target_owner, target_repo, target_branch))
+        result = self.circleci_client.build.trigger(target_owner,
+                                                    target_repo,
+                                                    target_branch,
+                                                    **build_args)
+        print('Build triggered at %s' % (result['build_url'],))

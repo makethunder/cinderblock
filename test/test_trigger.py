@@ -5,6 +5,8 @@ import pytest
 
 
 class FakeCircleCIClient(object):
+    build_url = 'https://example.com/build_url'
+
     def __init__(self, api_token):
         self._builds_triggered = []
         self.api_token = api_token
@@ -14,6 +16,10 @@ class FakeCircleCIClient(object):
             def trigger(username, project, branch, **build_params):
                 self._builds_triggered.append((
                     username, project, branch, build_params))
+
+                return {
+                    u'build_url': self.build_url,
+                }
 
         self.build = FakeBuild()
 
@@ -74,9 +80,7 @@ def test_trigger_circleci_build_output_url(trigger, capsys):
         source_build=None,
         source_commit=None)
 
-    url = 'https://www.circleci.com/gh/%s/%s/tree/%s\n' % (
-        'target_owner', 'target_repo', 'target_branch')
-    expected = 'Build triggered at ' + url
+    expected = 'Build triggered at %s\n' % (FakeCircleCIClient.build_url,)
 
     out, _ = capsys.readouterr()
     assert out == expected
